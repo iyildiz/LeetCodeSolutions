@@ -13,19 +13,19 @@ public class AddTwoNumbers {
             return null;
         }
 
-        ListNode sumOfDigitNode = findSumOfDigitNode(number1, number2, carriageIn);
-        int carriageOut = sumOfDigitNode.val/10;
+        int sumOfDigit = findSumOfDigitNode(number1, number2, carriageIn);
+        ListNode sumOfDigitNode = getListNode(sumOfDigit);
+        int carriageOut = sumOfDigit/10;
         sumOfDigitNode.next = addTwoNodesWithCarriage(getNextNode(number1), getNextNode(number2), carriageOut);
 
         return sumOfDigitNode;
-
     }
 
-    private ListNode findSumOfDigitNode(ListNode number1, ListNode number2, int carriageIn) {
+    private int findSumOfDigitNode(ListNode number1, ListNode number2, int carriageIn) {
         int digitOfNumber1 = getDigitValue(number1);
         int digitOfNumber2 = getDigitValue(number2);
 
-        return getListNode(digitOfNumber1 + digitOfNumber2 + carriageIn);
+        return digitOfNumber1 + digitOfNumber2 + carriageIn;
     }
 
     private ListNode getListNode(int digitOfSum) {
