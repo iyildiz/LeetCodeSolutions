@@ -25,10 +25,10 @@ public class AddTwoNumbersTest {
         AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
 
         ListNode number1 = new ListNode(9);
-        ListNode number2 = new ListNode(6);
+        ListNode number2 = new ListNode(5);
 
         ListNode sumOfNumbers = addTwoNumbers.addTwoNumbers(number1, number2);
-        assertThat(sumOfNumbers.toString(), equalTo("15") );
+        assertThat(sumOfNumbers.toString(), equalTo("14") );
     }
 
     @Test
