@@ -4,16 +4,12 @@ import java.util.*;
 
 public class IntegerToRoman {
 
-    private static Map<Integer, RomanNumber> integerToRomanMap = new HashMap<>();
+    private static final Map<Integer, RomanNumber> integerToRomanMap = new HashMap<>();
 
     static {
-        integerToRomanMap.put(1, RomanNumber.I);
-        integerToRomanMap.put(5, RomanNumber.V);
-        integerToRomanMap.put(10, RomanNumber.X);
-        integerToRomanMap.put(50, RomanNumber.L);
-        integerToRomanMap.put(100, RomanNumber.C);
-        integerToRomanMap.put(500, RomanNumber.D);
-        integerToRomanMap.put(1000, RomanNumber.M);
+        for(RomanNumber romanNumber: RomanNumber.values()) {
+            integerToRomanMap.put(romanNumber.intValue, romanNumber);
+        }
     }
 
     public String intToRoman(int number) {
@@ -48,7 +44,7 @@ public class IntegerToRoman {
         M(C, 1000);
 
         RomanNumber previousValue;
-        Integer intValue;
+        final Integer intValue;
 
         RomanNumber(RomanNumber previousValue, Integer intValue) {
             this.previousValue = previousValue;

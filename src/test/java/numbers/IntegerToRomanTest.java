@@ -58,5 +58,6 @@ public class IntegerToRomanTest {
         assertThat(integerToRoman.intToRoman(40), equalTo("XL"));
         assertThat(integerToRoman.intToRoman(50), equalTo("L"));
         assertThat(integerToRoman.intToRoman(60), equalTo("LX"));
+        assertThat(integerToRoman.intToRoman(61), equalTo("LXI"));
     }
 }
