@@ -1,5 +1,6 @@
-package twosum;
+package numbers;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,5 +23,20 @@ public class TwoSum {
         }
 
         throw new IllegalArgumentException("No possible solution found");
+    }
+
+    public int[] twoSum2(int[] numbers, int target) {
+
+        var trackedNumbers = new HashSet<Integer>();
+        for (int number : numbers) {
+            var numberRequired = target - number;
+            if (trackedNumbers.contains(numberRequired)) {
+                return new int[]{number, numberRequired};
+            } else {
+                trackedNumbers.add(number);
+            }
+        }
+
+        return new int[] {};
     }
 }
