@@ -5,19 +5,22 @@ import java.util.LinkedHashMap;
 public class FirstNonRepeatingCharacter {
     public int firstNonRepeatingCharacter1(String input) {
 
-        var existingCharacterOccurrences = new LinkedHashMap<Character, Integer>();
-        for (char ch : input.toCharArray()) {
+        var existingCharacterOccurrences = new LinkedHashMap<Character, CharacterOccurrence>();
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
             var numberOfOccurrence = existingCharacterOccurrences.get(ch);
-            existingCharacterOccurrences.put(ch, numberOfOccurrence == null ? 1 : numberOfOccurrence  + 1);
+            existingCharacterOccurrences.put(ch,
+                    numberOfOccurrence == null ? new CharacterOccurrence(i, 1) :
+                            new CharacterOccurrence(i, numberOfOccurrence.occurrence + 1));
         }
 
         var firstNonRepeatingCharacter = existingCharacterOccurrences.entrySet()
                 .stream()
-                .filter(entry -> entry.getValue() == 1)
+                .filter(entry -> entry.getValue().occurrence == 1)
                 .findFirst();
 
-        return firstNonRepeatingCharacter.map(ch
-                -> input.indexOf(ch.getKey())).orElse(-1);
+        return firstNonRepeatingCharacter.map(entry
+                -> entry.getValue().firstIndex).orElse(-1);
     }
 
     public int firstNonRepeatingCharacter2(String input) {
@@ -36,4 +39,5 @@ public class FirstNonRepeatingCharacter {
         return -1;
     }
 
+    private record CharacterOccurrence(int firstIndex, int occurrence) {}
 }
