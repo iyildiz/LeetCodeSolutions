@@ -1,6 +1,7 @@
 package arrays;
 
 import java.util.List;
+import java.util.Stack;
 
 public class ValidSubsequence {
   public boolean isValidSubsequence(List<Integer> array, List<Integer> sequence) {
@@ -29,5 +30,22 @@ public class ValidSubsequence {
     } else {
       return isValidSubsequenceRecursive(array.subList(1, array.size()), sequence);
     }
+  }
+
+  public boolean isValidSubsequenceStack(List<Integer> array, List<Integer> sequence) {
+
+    var validSubsequenceStack = new Stack<Integer>();
+    for (int i = sequence.size() - 1; i >= 0; i--) {
+      validSubsequenceStack.push(sequence.get(i));
+    }
+
+    for (Integer integer : array) {
+      if (validSubsequenceStack.peek().equals(integer)) {
+        validSubsequenceStack.pop();
+        if (validSubsequenceStack.isEmpty()) return true;
+      }
+    }
+
+    return validSubsequenceStack.isEmpty();
   }
 }

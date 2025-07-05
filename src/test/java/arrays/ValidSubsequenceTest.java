@@ -10,11 +10,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class ValidSubsequenceTest {
 
+  private final ValidSubsequence validSubsequence = new ValidSubsequence();
+
   @ParameterizedTest(name = "{0}")
   @MethodSource("isValidSubsequenceTestCases")
   void isValidSubsequence(
       String description, List<Integer> array, List<Integer> sequence, boolean expected) {
-    var validSubsequence = new ValidSubsequence();
     assertThat(validSubsequence.isValidSubsequence(array, sequence)).isEqualTo(expected);
   }
 
@@ -22,8 +23,14 @@ public class ValidSubsequenceTest {
   @MethodSource("isValidSubsequenceTestCases")
   void isValidSubsequenceRecursive(
       String description, List<Integer> array, List<Integer> sequence, boolean expected) {
-    var validSubsequence = new ValidSubsequence();
     assertThat(validSubsequence.isValidSubsequenceRecursive(array, sequence)).isEqualTo(expected);
+  }
+
+  @ParameterizedTest(name = "{0}")
+  @MethodSource("isValidSubsequenceTestCases")
+  void isValidSubsequenceStack(
+      String description, List<Integer> array, List<Integer> sequence, boolean expected) {
+    assertThat(validSubsequence.isValidSubsequenceStack(array, sequence)).isEqualTo(expected);
   }
 
   private static Stream<Arguments> isValidSubsequenceTestCases() {
