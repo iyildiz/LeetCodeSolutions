@@ -2,29 +2,30 @@ package stringops;
 
 public class LongestPalindromicSubstring {
 
-    public String longestPalindrome(String str) {
+  public String longestPalindrome(String str) {
 
-        String currentLongestPalindromeSubString = "";
+    String currentLongestPalindromeSubString = "";
 
-        for(int startIndex = 0; startIndex < str.length() ; startIndex++){
-            for(int endIndex = startIndex + 1; endIndex <= str.length(); endIndex ++){
-                String subString = str.substring(startIndex, endIndex);
-                if(isShorterThan(currentLongestPalindromeSubString, subString) && isPalindrome(subString)){
-                    currentLongestPalindromeSubString = subString;
-                }
-            }
+    for (int startIndex = 0; startIndex < str.length(); startIndex++) {
+      for (int endIndex = startIndex + 1; endIndex <= str.length(); endIndex++) {
+        String subString = str.substring(startIndex, endIndex);
+        if (isShorterThan(currentLongestPalindromeSubString, subString)
+            && isPalindrome(subString)) {
+          currentLongestPalindromeSubString = subString;
         }
-
-        return currentLongestPalindromeSubString;
+      }
     }
 
-    private boolean isShorterThan(String firstString, String secondString) {
-        return firstString.length() < secondString.length();
-    }
+    return currentLongestPalindromeSubString;
+  }
 
-    private boolean isPalindrome(String str) {
+  private boolean isShorterThan(String firstString, String secondString) {
+    return firstString.length() < secondString.length();
+  }
 
-        final StringBuilder reverseOfString = new StringBuilder(str).reverse();
-        return str.equals(reverseOfString.toString());
-    }
+  private boolean isPalindrome(String str) {
+
+    final StringBuilder reverseOfString = new StringBuilder(str).reverse();
+    return str.equals(reverseOfString.toString());
+  }
 }
