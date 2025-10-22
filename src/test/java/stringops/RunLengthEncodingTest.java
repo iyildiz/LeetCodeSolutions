@@ -8,14 +8,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class RunLengthEncodingTest {
 
   @ParameterizedTest
-  @CsvSource(
-      value = {
-        "A, 1A",
-        "AB, 1A1B",
-        "AAB, 2A1B",
-        "AAABBBCCDAA, 3A3B2C1D2A",
-        "AAAAAAAAAAAAABBCCCCDD, 9A4A2B4C2D"
-      })
+  @CsvSource({
+    "'',''",
+    "A, 1A",
+    "AB, 1A1B",
+    "AAB, 2A1B",
+    "AAABBBCCDAA, 3A3B2C1D2A",
+    "AAAAAAAAAAAAABBCCCCDD, 9A4A2B4C2D"
+  })
   void shouldReturnRunLengthEncodingSingleLetter(String input, String expected) {
     var runLengthEncoding = new RunLengthEncoding();
 
